@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -118,6 +118,22 @@ const AddBookPage = () => {
     }
   };
 
+  const isFormValid = useMemo(() => {
+    const { title, author, category, publishedYear, stock } = bookData;
+
+    const isStringFilled =
+      title.trim() !== "" && author.trim() !== "" && category.trim() !== "";
+
+    // Memastikan angka adalah angka (> 0 untuk stok) dan tahun terbit valid
+    const isNumberValid =
+      publishedYear >= 1900 &&
+      publishedYear <= new Date().getFullYear() &&
+      stock >= 0 &&
+      Number.isInteger(stock); // Stok harus bilangan bulat
+
+    return isStringFilled && isNumberValid;
+  }, [bookData]); // Hitung ulang setiap kali bookData berubah
+
   return (
     <div className="max-w items-start">
       <h2 className="text-xl font-bold text-gray-800 mb-3 pb-3">
@@ -234,11 +250,16 @@ const AddBookPage = () => {
         {/* Tombol Submit */}
 
         <div className="pt-4 border-t flex justify-end space-x-4">
-          <Button type="button" variant="outline">
+          <Button type="button" variant="outline" onClick={() => navigate(-1)}>
             Batal
           </Button>
 
-          <Button type="submit" isLoading={loading} variant="primary">
+          <Button
+            type="submit"
+            isLoading={loading}
+            variant="primary"
+            disabled={!isFormValid || loading}
+          >
             Simpan Buku
           </Button>
         </div>

@@ -5,7 +5,6 @@ import SpinnerAnimate from "../components/Icon/SpinnerAnimate";
 import Pagination from "../components/Pagination";
 import KebabMenu from "../components/KebabMenu";
 import useDebounce from "../utils/useDebounce";
-import LinearProgressBar from "../components/ui/LinearProgressBar";
 import EmptyStateRow from "../components/EmptyStateRow";
 import SearchIcon from "../components/Icon/SearchIcon";
 import { getUserRole } from "../utils/auth";
@@ -233,7 +232,6 @@ const BookManagementPage = () => {
         style={{ minHeight: "400px" }}
       >
         {/* ⭐️ GUNAKAN KOMPONEN MODULAR DI SINI ⭐️ */}
-        {/* <LinearProgressBar isLoading={loading} /> */}
         <table className="min-w-full divide-y divide-gray-200 rounded-t-lg">
           <thead className="rounded-t-lg bg-gray-200">
             <tr>
