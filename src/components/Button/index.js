@@ -42,13 +42,14 @@ const Button = ({
       break;
     case "primary":
     default:
-      variantStyles = "bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500";
+      variantStyles =
+        "bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 text-white";
       break;
   }
 
   const stateStyles =
     isLoading || disabled
-      ? "bg-gray-400 cursor-not-allowed pointer-events-none"
+      ? "bg-gray-200 cursor-not-allowed pointer-events-none text-gray-700"
       : variantStyles;
 
   const widthStyle = fullWidth ? "w-full" : "inline-flex justify-center";
